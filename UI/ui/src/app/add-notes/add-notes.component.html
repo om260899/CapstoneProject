@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    <h1 class="text-center">Add Notes</h1>
+    <div class="form w-50 p-4 mx-auto">
+        <div *ngIf="showSuccAlert" class="alert alert-success mx-auto" role="alert">
+            Note added successfully
+        </div>
+        <div *ngIf="showFailAlert" class="alert alert-success mx-auto" role="alert">
+            Note added successfully
+        </div>
+        <form #noteFrm="ngForm" (ngSubmit)="addNote(noteFrm.value)">
+            <div class="mb-3">
+              <label for="username" class="form-label fs-3">Note</label>
+              <textarea 
+                  id="note" 
+                  cols="30" 
+                  rows="10"
+                  class="form-control rounded-0"
+                  aria-describedby="note"
+                  name="note" 
+                  ngModel
+                  placeholder="You can write any important note here..."
+              >
+              </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-0 py-1 px-3">Add</button>
+          </form>
+    </div>
+</div>

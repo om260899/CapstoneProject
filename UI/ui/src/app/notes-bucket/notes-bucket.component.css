@@ -1,0 +1,18 @@
+.popup {
+    height: 5rem;
+    z-index: 1;
+    position: absolute;
+    right: 50px;
+    background-color: #fff;
+    width: 10rem;
+}
+.box {
+    width: 10rem;
+}
+.inner-box:hover{
+    cursor: pointer;
+    background-color: #dfdfdf;
+}
+.pop{
+    margin-top: 160px;
+}

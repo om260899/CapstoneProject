@@ -1,0 +1,17 @@
+.not-found-container {
+    height: 100vh;
+}
+
+.not-found {
+    font-size: 10em;
+    color: #86BC25;
+}
+
+.inner-container {
+    height: 80%;
+}
+
+.content {
+    height: 25%;
+    gap: 20px;
+}

@@ -1,0 +1,80 @@
+<div class="container mt-3">
+    <div *ngIf="userNotes.length === 0" class="border p-4 w-50 mx-auto my-auto">
+        <h2 class="mb-3">Oops! No notes to display !</h2>
+        <p class="mb-4">You can add notes here... Click on the button below...</p>
+        <button routerLink="/add-notes" class="btn btn-primary rounded-0 px-3 py-1">Add Note</button>
+    </div>
+    <div class="row justify-content-between">
+        <div *ngFor="let note of userNotes" class="card me-1 mb-4" style="width: 49%; height: 15rem">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="card-title">{{note.note.slice(0, 5)}}...</h5>
+                    <div class="dropdown">
+                        <i style="cursor: pointer;" 
+                            class="bi bi-three-dots-vertical dropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </i>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a class="dropdown-item"
+                                style="cursor: pointer;" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#exampleModal"
+                                (click)="updateModal(note.id, note.note)">edit</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                    style="cursor: pointer;"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#exampleModal2" 
+                                    (click)="noteId = note.id">delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="card-text" style="overflow-y: auto;">{{note.note}}</p>
+            </div>
+        </div>
+        <!-- modal -->
+        <div class="modal fade pop" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content p-3">
+                <div class="d-flex justify-content-between">
+                    <h3 class="mb-3">Edit Note</h3>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form #noteFrm="ngForm" (ngSubmit)="updateNote(noteFrm.value)">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Note</label>
+                    <textarea 
+                        id="note" 
+                        cols="30" 
+                        rows="10"
+                        class="form-control rounded-0"
+                        aria-describedby="note"
+                        name="note" 
+                        ngModel
+                    >
+                    </textarea>
+                  </div>
+                  <button data-bs-dismiss="modal" aria-label="Close" type="submit" class="btn btn-primary rounded-0">Update</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        <!-- modal 2 -->
+        <div class="modal fade pop" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content p-3">
+                <div class="d-flex justify-content-between mb-4">
+                    <h3 class="text-center">Are you sure ?</h3>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="content">
+                    <button data-bs-dismiss="modal" aria-label="Close" type="button" class="btn btn-primary rounded-0" (click)="deleteModal()">Yes</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
